@@ -1,9 +1,12 @@
 package com.zpi.jogasimple
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -30,7 +33,7 @@ class ExcerciseActivity : AppCompatActivity() {
         when(item.itemId){
             android.R.id.home->finish()
             R.id.id_start->{
-                Snackbar.make(mainView, "Kliknięto menu stop...", Snackbar.LENGTH_SHORT).show()
+                openStartDialog()
                 return true
             }
             R.id.id_stop->{
@@ -41,5 +44,17 @@ class ExcerciseActivity : AppCompatActivity() {
 
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun openStartDialog(){
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage("Przykładowy opis ćwiczenia")
+
+        dialogBuilder.setPositiveButton("OK"){
+                dialog, id ->
+        }
+        val dialog = dialogBuilder.create()
+
+        dialog.show()
     }
 }

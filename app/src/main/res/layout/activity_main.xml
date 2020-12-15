@@ -23,7 +23,7 @@
         android:id="@+id/excerciseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rozpocznij trening"
+        android:text="@string/start_workout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/mainImageView"
         app:layout_constraintStart_toStartOf="@+id/mainImageView"

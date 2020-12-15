@@ -42,17 +42,19 @@ class ExcerciseActivity : AppCompatActivity() {
             }
         }
 
-
         return super.onOptionsItemSelected(item)
     }
 
     fun openStartDialog(){
         val dialogBuilder = AlertDialog.Builder(this)
+
         dialogBuilder.setMessage("Przykładowy opis ćwiczenia")
+        dialogBuilder.setView(layoutInflater.inflate(R.layout.excercise_dialog_layout,null))
 
         dialogBuilder.setPositiveButton("OK"){
                 dialog, id ->
         }
+
         val dialog = dialogBuilder.create()
 
         dialog.show()

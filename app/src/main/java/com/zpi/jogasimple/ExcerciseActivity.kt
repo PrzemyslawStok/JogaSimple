@@ -8,7 +8,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_excercise.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.mainView
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ExcerciseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +20,37 @@ class ExcerciseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_excercise)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val timeFormat = SimpleDateFormat("mm:ss", Locale.ENGLISH)
+        var startTime : Long = 0;
+
+        //val currentTime = System.currentTimeMillis()
+        //val time: Int = 30-((currentTime-startTime)/1000).toInt()
+
+        //timerView.setText("00:${time}")
+
+        val thread = Thread {
+            var number = 30
+            for (i in 0..30) {
+
+                runOnUiThread {
+                    timerView.setText("00:${number}")
+                }
+
+                Thread.sleep(1000)
+                number--
+            }
+
+            runOnUiThread{
+                openStartDialog()
+            }
+
+        }
+
+        startButton.setOnClickListener{
+            startTime = System.currentTimeMillis()
+            thread.start()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

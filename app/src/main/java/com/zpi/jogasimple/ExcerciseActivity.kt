@@ -35,6 +35,8 @@ class ExcerciseActivity : AppCompatActivity() {
 
         val thread = Thread {
             var number = 30
+            timerIsStarted = true
+
             for (i in 0..30) {
 
                 runOnUiThread {
@@ -60,7 +62,6 @@ class ExcerciseActivity : AppCompatActivity() {
             startTime = System.currentTimeMillis()
 
             if(!timerIsStarted) {
-                timerIsStarted = true
                 thread.start()
             }
         }

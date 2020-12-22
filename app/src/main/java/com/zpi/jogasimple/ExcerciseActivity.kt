@@ -1,6 +1,8 @@
 package com.zpi.jogasimple
 
 import android.content.DialogInterface
+import android.media.AudioManager
+import android.media.ToneGenerator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -29,6 +31,8 @@ class ExcerciseActivity : AppCompatActivity() {
 
         //timerView.setText("00:${time}")
 
+        var timerIsStarted = false
+
         val thread = Thread {
             var number = 30
             for (i in 0..30) {
@@ -43,13 +47,22 @@ class ExcerciseActivity : AppCompatActivity() {
 
             runOnUiThread{
                 openStartDialog()
+
+                val toneG = ToneGenerator(AudioManager.STREAM_ALARM, 100)
+                toneG.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT,500)
             }
+
+            timerIsStarted = false
 
         }
 
         startButton.setOnClickListener{
             startTime = System.currentTimeMillis()
-            thread.start()
+
+            if(!timerIsStarted) {
+                timerIsStarted = true
+                thread.start()
+            }
         }
     }
 
